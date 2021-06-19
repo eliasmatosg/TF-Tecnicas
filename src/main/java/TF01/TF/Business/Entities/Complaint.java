@@ -24,11 +24,11 @@ public class Complaint {
     private Boolean hasBeenSolved;
     private Date date;
 
-    @OneToOne(cascade= CascadeType.ALL)
+    @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name="category_id", referencedColumnName = "id")
     private Category category;
 
-    // TODO:  bairro, endereço e categoria
+    // TODO:  bairro, endereço
 
     protected Complaint() {};
 
