@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 public class User{
@@ -20,19 +22,21 @@ public class User{
 	private String name;
 	private boolean isAdmin;
 
+    // Many to Many?
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "comments")
 	private Comment comments;
 	
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToMany(cascade=ALL, mappedBy="user")
 	@JoinColumn(name = "complaints")
-	private Complaint complaints;
+	private List<Complaint> complaints;
 
 	protected User() {}
 
     public User(String name, boolean isAdmin) {
         this.name = name;
         this.isAdmin = isAdmin;
+        this.complaints = new ArrayList<>();
     }
 
     @Override
@@ -52,5 +56,9 @@ public class User{
 
     public boolean getIsAdmin() {
         return isAdmin;
+    }
+
+    public ArrayList getComplaints() {
+        return complaints;
     }
 }
