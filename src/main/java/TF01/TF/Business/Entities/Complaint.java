@@ -28,17 +28,20 @@ public class Complaint {
     @JoinColumn(name="category_id", referencedColumnName = "id")
     private Category category;
 
-    // TODO:  bairro, endereço
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name = "street_id")
+	private Street street;
 
     protected Complaint() {};
 
-    public Complaint(String title, String description, String imageLink, Date date, Boolean hasBeenSolved, Category category) {
+    public Complaint(String title, String description, String imageLink, Date date, Boolean hasBeenSolved, Category category, Street street) {
         this.title = title;
         this.description = description;
         this.imageLink = imageLink;
         this.date = date;
         this.hasBeenSolved = hasBeenSolved;
         this.category = category;
+        this.street = street;
     }
 
     public Long getId() {
@@ -71,5 +74,9 @@ public class Complaint {
 
     public Category getCategory() {
         return category;
+    }
+
+    public Street getStreet() {
+        return street;
     }
 }
