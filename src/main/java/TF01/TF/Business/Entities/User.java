@@ -53,8 +53,16 @@ public class User {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public boolean getIsAdmin() {
         return isAdmin;
+    }
+
+    public void toggleIsAdmin() {
+        this.isAdmin = !isAdmin;
     }
 
     public ArrayList getComplaints() {

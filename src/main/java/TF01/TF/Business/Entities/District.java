@@ -39,6 +39,10 @@ public class District {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public List<Street> getStreets() {
         return streets;
     }

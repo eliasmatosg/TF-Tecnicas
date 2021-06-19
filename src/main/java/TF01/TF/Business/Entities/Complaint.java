@@ -52,16 +52,32 @@ public class Complaint {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImageLink() {
         return imageLink;
     }
 
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
     public Date getDate() {
         return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public Boolean getHasBeenSolved() {
@@ -76,7 +92,15 @@ public class Complaint {
         return category;
     }
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public Street getStreet() {
         return street;
+    }
+
+    public void setStreet(Street street) {
+        this.street = treet;
     }
 }

@@ -51,8 +51,8 @@ public class OfficialOrgan {
         return name;
     }
 
-    public boolean getIsAdmin() {
-        return isAdmin;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public ArrayList getComplaints() {

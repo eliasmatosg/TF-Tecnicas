@@ -12,27 +12,38 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Category {
+public class Comment {
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-    private String name;
 
-    protected Category() {}
+    private String text;
+    private String imageLink;
 
-    public Category(String name) {
-        this.name = name;
+    protected Comment() {}
+    public Comment(String text, String imageLink) {
+        this.text = text;
+        this.imageLink = imageLink;
     }
 
-    public Long getId() {
+    public getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getText() {
+        return text;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setText(String text) {
+        this.text = text;
     }
+    
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
 }
