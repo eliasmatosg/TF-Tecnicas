@@ -30,6 +30,10 @@ public class Street {
         this.district = district;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }

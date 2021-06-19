@@ -14,21 +14,33 @@ import java.util.List;
 import java.util.ArrayList;
 
 @Entity
-public class District {
-    @Id
+public class OfficialOrgan {
+	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-    private String name;
+	private String name;
 
-    @OneToMany(cascade=ALL, mappedBy="district")
-	private List<Street> streets;
+    // Many to Many?
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "comments")
+	private Comment comments;
+	
+    @OneToMany(cascade=ALL, mappedBy="officialOrgan")
+	private List<Complaint> complaints;
 
-    protected District() {}
+	protected OfficialOrgan() {}
 
-    public District(String name) {
+    public OfficialOrgan(String name, boolean isAdmin) {
         this.name = name;
-        this.streets = new ArrayList<>();
+        this.complaints = new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+      return String.format(
+          "OfficialOrgan: [id=%d, name='%s']",
+          id, name);
     }
 
     public Long getId() {
@@ -39,7 +51,11 @@ public class District {
         return name;
     }
 
-    public List<Street> getStreets() {
-        return streets;
+    public boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public ArrayList getComplaints() {
+        return complaints;
     }
 }
