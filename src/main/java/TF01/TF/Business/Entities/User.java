@@ -15,15 +15,42 @@ import javax.persistence.OneToMany;
 public class User{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int userId;
+	private Long id;
+
 	private String name;
-	private boolean admin;
+	private boolean isAdmin;
+
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "a ser criada")
+	@JoinColumn(name = "comments")
 	private Comment comments;
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "a ser criada tb")
+	
+    @ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "complaints")
 	private Complaint complaints;
 
 	protected User() {}
+
+    public User(String name, boolean isAdmin) {
+        this.name = name;
+        this.isAdmin = isAdmin;
+    }
+
+    @Override
+    public String toString() {
+      return String.format(
+          "User: [id=%d, name='%s', isAdmin='%b']",
+          id, name, isAdmin);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean getIsAdmin() {
+        return isAdmin;
+    }
 }
