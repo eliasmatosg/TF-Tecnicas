@@ -13,5 +13,18 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Category {
-    
+    @Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+    private String name;
+
+    protected Category() {}
+
+    public Category(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

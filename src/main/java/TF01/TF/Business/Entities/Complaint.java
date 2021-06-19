@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Complaint {
@@ -23,15 +24,25 @@ public class Complaint {
     private Boolean hasBeenSolved;
     private Date date;
 
+    @OneToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name="category_id", referencedColumnName = "id")
+    private Category category;
+
     // TODO:  bairro, endereço e categoria
 
     protected Complaint() {};
 
-    public Complaint(String title, String description, String imageLink, Date date) {
+    public Complaint(String title, String description, String imageLink, Date date, Boolean hasBeenSolved, Category category) {
         this.title = title;
         this.description = description;
         this.imageLink = imageLink;
         this.date = date;
+        this.hasBeenSolved = hasBeenSolved;
+        this.category = category;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -48,5 +59,17 @@ public class Complaint {
 
     public Date getDate() {
         return date;
+    }
+
+    public Boolean getHasBeenSolved() {
+        return hasBeenSolved;
+    }
+
+    public void toggleHasBeenSolved() {
+        hasBeenSolved = !hasBeenSolved;
+    }
+
+    public Category getCategory() {
+        return category;
     }
 }

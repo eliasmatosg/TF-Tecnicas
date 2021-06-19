@@ -28,7 +28,6 @@ public class User {
 	private Comment comments;
 	
     @OneToMany(cascade=ALL, mappedBy="user")
-	@JoinColumn(name = "complaints")
 	private List<Complaint> complaints;
 
 	protected User() {}
