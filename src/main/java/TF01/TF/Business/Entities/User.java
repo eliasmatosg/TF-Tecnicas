@@ -25,4 +25,5 @@ public class User{
 	@JoinColumn(name = "a ser criada tb")
 	private Complaint complaints;
 
+	protected User() {}
 }
