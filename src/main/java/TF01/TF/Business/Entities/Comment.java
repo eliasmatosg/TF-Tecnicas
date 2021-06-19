@@ -20,10 +20,28 @@ public class Comment {
     private String text;
     private String imageLink;
 
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+	private User user;
+
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name = "officialOrgan_id")
+	private OfficialOrgan officialOrgan;
+
     protected Comment() {}
-    public Comment(String text, String imageLink) {
+
+    public Comment(String text, String imageLink, User user) {
         this.text = text;
         this.imageLink = imageLink;
+        this.user = user;
+        this.officialOrgan = null;
+    }
+
+    public Comment(String text, String imageLink, OfficialOrgan officialOrgan) {
+        this.text = text;
+        this.imageLink = imageLink;
+        this.officialOrgan = officialOrgan;
+        this.user = null;
     }
 
     public getId() {

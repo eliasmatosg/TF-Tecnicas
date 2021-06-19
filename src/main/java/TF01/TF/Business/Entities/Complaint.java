@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 public class Complaint {
@@ -32,6 +34,9 @@ public class Complaint {
     @JoinColumn(name = "street_id")
 	private Street street;
 
+    @OneToMany(cascade=ALL, mappedBy="complaint")
+	private List<Comment> comments;
+
     protected Complaint() {};
 
     public Complaint(String title, String description, String imageLink, Date date, Boolean hasBeenSolved, Category category, Street street) {
@@ -42,6 +47,7 @@ public class Complaint {
         this.hasBeenSolved = hasBeenSolved;
         this.category = category;
         this.street = street;
+        this.comments = new ArrayList<Comment>();
     }
 
     public Long getId() {
