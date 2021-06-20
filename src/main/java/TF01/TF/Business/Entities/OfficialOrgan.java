@@ -14,30 +14,28 @@ import java.util.List;
 import java.util.ArrayList;
 
 @Entity
-public class User {
+public class OfficialOrgan {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	private String name;
-	private boolean isAdmin;
-    
-    @OneToMany(cascade=ALL, mappedBy="user")
+	
+    @OneToMany(cascade=ALL, mappedBy="officialOrgan")
 	private List<Complaint> complaints;
 
-	protected User() {}
+	protected OfficialOrgan() {}
 
-    public User(String name, boolean isAdmin) {
+    public OfficialOrgan(String name, boolean isAdmin) {
         this.name = name;
-        this.isAdmin = isAdmin;
         this.complaints = new ArrayList<>();
     }
 
     @Override
     public String toString() {
       return String.format(
-          "User: [id=%d, name='%s', isAdmin='%b']",
-          id, name, isAdmin);
+          "OfficialOrgan: [id=%d, name='%s']",
+          id, name);
     }
 
     public Long getId() {
@@ -50,14 +48,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public boolean getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void toggleIsAdmin() {
-        this.isAdmin = !isAdmin;
     }
 
     public ArrayList getComplaints() {

@@ -14,30 +14,21 @@ import java.util.List;
 import java.util.ArrayList;
 
 @Entity
-public class User {
-	@Id
+public class District {
+    @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	private String name;
-	private boolean isAdmin;
-    
-    @OneToMany(cascade=ALL, mappedBy="user")
-	private List<Complaint> complaints;
+    private String name;
 
-	protected User() {}
+    @OneToMany(cascade=ALL, mappedBy="district")
+	private List<Street> streets;
 
-    public User(String name, boolean isAdmin) {
+    protected District() {}
+
+    public District(String name) {
         this.name = name;
-        this.isAdmin = isAdmin;
-        this.complaints = new ArrayList<>();
-    }
-
-    @Override
-    public String toString() {
-      return String.format(
-          "User: [id=%d, name='%s', isAdmin='%b']",
-          id, name, isAdmin);
+        this.streets = new ArrayList<>();
     }
 
     public Long getId() {
@@ -52,15 +43,7 @@ public class User {
         this.name = name;
     }
 
-    public boolean getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void toggleIsAdmin() {
-        this.isAdmin = !isAdmin;
-    }
-
-    public ArrayList getComplaints() {
-        return complaints;
+    public List<Street> getStreets() {
+        return streets;
     }
 }
