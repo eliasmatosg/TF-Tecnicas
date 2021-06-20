@@ -21,12 +21,7 @@ public class User {
 
 	private String name;
 	private boolean isAdmin;
-
-    // Many to Many?
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "comments")
-	private Comment comments;
-	
+    
     @OneToMany(cascade=ALL, mappedBy="user")
 	private List<Complaint> complaints;
 

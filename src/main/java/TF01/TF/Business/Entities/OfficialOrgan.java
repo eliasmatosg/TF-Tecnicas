@@ -20,11 +20,6 @@ public class OfficialOrgan {
 	private Long id;
 
 	private String name;
-
-    // Many to Many?
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "comments")
-	private Comment comments;
 	
     @OneToMany(cascade=ALL, mappedBy="officialOrgan")
 	private List<Complaint> complaints;
