@@ -1,0 +1,11 @@
+package TF01.TF.Business.Repositories;
+
+import java.util.*;
+import TF01.TF.Business.Entities.*;
+
+public interface CategoryRepo {
+    List<Category> todos();
+    List<Category> todos(String name, Long id);
+    boolean cadastra (Long id, Category category);
+
+}
