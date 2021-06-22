@@ -21,15 +21,17 @@ public class User {
 
 	private String name;
 	private boolean isAdmin;
-    
+    private boolean isOfficialOrgan;
+
     @OneToMany(cascade=ALL, mappedBy="user")
 	private List<Complaint> complaints;
 
 	protected User() {}
 
-    public User(String name, boolean isAdmin) {
+    public User(String name, boolean isAdmin, boolean isOfficialOrgan) {
         this.name = name;
         this.isAdmin = isAdmin;
+        this.isOfficialOrgan = isOfficialOrgan;
         this.complaints = new ArrayList<>();
     }
 
@@ -56,8 +58,17 @@ public class User {
         return isAdmin;
     }
 
+    public boolean getIsOfficialOrgan() {
+        return isOfficialOrgan;
+    }
+
     public void toggleIsAdmin() {
         this.isAdmin = !isAdmin;
+    }
+
+    
+    public void toggleIsOfficialOrgan() {
+        this.isOfficialOrgan = !isOfficialOrgan;
     }
 
     public ArrayList getComplaints() {
