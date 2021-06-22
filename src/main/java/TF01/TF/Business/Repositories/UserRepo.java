@@ -5,7 +5,7 @@ import TF01.TF.Business.Entities.*;
 
 public interface UserRepo {
     List<User> todos();
-    List<User> todos(String name);
+    List<User> especifico(String name);
     void removeTodos();
     boolean cadastra(String name, User user);
     
