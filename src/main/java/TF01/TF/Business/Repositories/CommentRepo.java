@@ -6,6 +6,6 @@ import TF01.TF.Business.Entities.*;
 public interface CommentRepo {
     List<Reclamacoes> todos();
     List<Reclamacoes> especifico(String text);
-    void removeTodos();
-    boolean cadastra(String text, Comment comment);
+    boolean removeTodos();
+    boolean cadastra(Comment comment);
 }
