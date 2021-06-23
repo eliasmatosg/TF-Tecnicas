@@ -7,7 +7,6 @@ public interface UserRepo {
     List<User> todos();
     List<User> especifico(String name);
     void removeTodos();
-    boolean cadastra(String name, User user);
-    
+    boolean cadastra(User user);
 }
     
