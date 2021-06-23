@@ -9,4 +9,3 @@ public interface UserRepo {
     boolean removeTodos();
     boolean cadastra(User user);
 }
-    

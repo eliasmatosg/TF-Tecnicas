@@ -8,5 +8,4 @@ public interface CommentRepo {
     List<Reclamacoes> especifico(String text);
     void removeTodos();
     boolean cadastra(String text, Comment comment);
-
 }
