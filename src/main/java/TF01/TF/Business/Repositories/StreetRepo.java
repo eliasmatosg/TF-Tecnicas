@@ -5,7 +5,7 @@ import TF01.TF.Business.Entities.*;
 
 public interface StreetRepo {
     List<Street> todos();
-    List<Street> especifico(District district );
+    List<Street> especifico(Street street);
     boolean removeTodos();
-    boolean cadastrar(District district);
+    boolean cadastrar(Street street);
 }
