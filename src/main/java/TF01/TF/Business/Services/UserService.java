@@ -29,7 +29,7 @@ public class UserService {
         return userRepo.removeTodos();
     }
 
-    public boolean cadastrar(String name, User user) {
+    public boolean cadastrar(User user) {
         return userRepo.cadastrar(user);
     }
 }
