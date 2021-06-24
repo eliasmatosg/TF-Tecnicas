@@ -21,7 +21,7 @@ public class District {
 
     private String name;
 
-    @OneToMany(cascade=ALL, mappedBy="district")
+    @OneToMany(cascade= CascadeType.ALL, mappedBy="district")
 	private List<Street> streets;
 
     protected District() {}

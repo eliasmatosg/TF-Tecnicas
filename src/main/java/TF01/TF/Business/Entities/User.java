@@ -23,7 +23,7 @@ public class User {
 	private boolean isAdmin;
     private boolean isOfficialOrgan;
 
-    @OneToMany(cascade=ALL, mappedBy="user")
+    @OneToMany(cascade= CascadeType.ALL, mappedBy="user")
 	private List<Complaint> complaints;
 
 	protected User() {}
@@ -71,7 +71,7 @@ public class User {
         this.isOfficialOrgan = !isOfficialOrgan;
     }
 
-    public ArrayList getComplaints() {
+    public List<Complaint> getComplaints() {
         return complaints;
     }
 }

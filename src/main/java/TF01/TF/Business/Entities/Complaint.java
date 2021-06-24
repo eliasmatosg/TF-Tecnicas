@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Date;
 
 @Entity
 public class Complaint {
@@ -34,7 +35,7 @@ public class Complaint {
     @JoinColumn(name = "street_id")
 	private Street street;
 
-    @OneToMany(cascade=ALL, mappedBy="complaint")
+    @OneToMany(cascade= CascadeType.ALL, mappedBy="complaint")
 	private List<Comment> comments;
 
     protected Complaint() {};
@@ -107,6 +108,6 @@ public class Complaint {
     }
 
     public void setStreet(Street street) {
-        this.street = treet;
+        this.street = street;
     }
 }

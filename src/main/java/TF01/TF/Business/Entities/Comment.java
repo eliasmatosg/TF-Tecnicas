@@ -32,7 +32,7 @@ public class Comment {
         this.user = user;
     }
 
-    public getId() {
+    public Long getId() {
         return id;
     }
 

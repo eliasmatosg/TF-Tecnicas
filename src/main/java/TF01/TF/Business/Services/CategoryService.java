@@ -13,7 +13,7 @@ public class CategoryService {
     private CategoryRepo categoryRepo;
 
     @Autowired
-    public ComplaintService(CategoryRepo categoryRepo) {
+    public CategoryService(CategoryRepo categoryRepo) {
         this.categoryRepo = categoryRepo;
     }
 
