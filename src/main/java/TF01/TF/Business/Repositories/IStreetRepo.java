@@ -3,7 +3,7 @@ package TF01.TF.Business.Repositories;
 import java.util.*;
 import TF01.TF.Business.Entities.*;
 
-public interface StreetRepo {
+public interface IStreetRepo {
     List<Street> todos();
     List<Street> especifico(String name);
     boolean removeTodos();

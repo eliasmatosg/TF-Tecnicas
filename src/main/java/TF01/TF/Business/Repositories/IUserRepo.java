@@ -3,7 +3,7 @@ package TF01.TF.Business.Repositories;
 import java.util.*;
 import TF01.TF.Business.Entities.*;
 
-public interface UserRepo {
+public interface IUserRepo {
     List<User> todos();
     List<User> especifico(String name);
     boolean removeTodos();
