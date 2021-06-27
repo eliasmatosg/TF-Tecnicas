@@ -21,11 +21,9 @@ public class User {
 	private String name;
 	private boolean isAdmin;
     private boolean isOfficialOrgan;
-    @OneToMany(cascade= CascadeType.ALL, mappedBy="user")
-    @JoinColumn(name = "complaint_id")
+    @OneToMany(cascade= CascadeType.ALL, mappedBy="user", fetch = FetchType.EAGER)
 	private List<Complaint> complaints;
-    @OneToMany()
-    @JoinColumn(name = "comment_id", nullable = false)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
     private List<Comment> comments;
 
 	protected User() {}

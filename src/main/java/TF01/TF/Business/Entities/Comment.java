@@ -18,15 +18,27 @@ public class Comment {
 	private Long id;
     private String text;
     private String imageLink;
-    @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch= FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
 	private User user;
     protected Comment() {}
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "complaint_id", nullable = false)
+    private Comment comment;
 
-    public Comment(String text, String imageLink, User user) {
+    public Comment(String text, String imageLink, User user, Comment comment) {
         this.text = text;
         this.imageLink = imageLink;
         this.user = user;
+        this.comment = comment;
+    }
+
+    public Comment getComment(){
+        return comment;
+    }
+
+    public void setComment(Comment comment){
+        this.comment = comment;
     }
 
     public Long getId() {

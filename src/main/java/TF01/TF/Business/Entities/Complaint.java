@@ -28,7 +28,7 @@ public class Complaint {
     private String district;
     private String category;
     private String address;
-    @OneToMany(cascade= CascadeType.ALL, mappedBy="complaint")
+    @OneToMany(cascade= CascadeType.ALL, fetch = FetchType.EAGER, mappedBy="complaint")
 	private List<Comment> comments;
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", nullable = false)
