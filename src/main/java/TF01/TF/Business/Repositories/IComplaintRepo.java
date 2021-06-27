@@ -8,6 +8,6 @@ public interface IComplaintRepo {
     List<Complaint> SpecificComplaint(String filter);
     void removeAll();
     void removeSpecific(Long id);
-    boolean register(Complaint complaint);
+    boolean register(long userId, Complaint complaint);
     List<Comment> allComments();
 }

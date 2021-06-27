@@ -30,8 +30,8 @@ public class ComplaintService {
         complaintRep.removeAll();
     }
 
-    public boolean register(Complaint complaint) {
-        return complaintRep.register(complaint);
+    public boolean register(long userId, Complaint complaint) {
+        return complaintRep.register(userId, complaint);
     }
 
     public List<Comment> getComments(){

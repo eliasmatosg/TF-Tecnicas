@@ -14,8 +14,8 @@ public class RegisterComplaintUC {
 		this.complaintService = complaintService;
 	}
 
-	public void run(Complaint complaint){
-		complaintService.register(complaint);
+	public void run(long userId, Complaint complaint){
+		complaintService.register(userId, complaint);
 	}
 		
 }

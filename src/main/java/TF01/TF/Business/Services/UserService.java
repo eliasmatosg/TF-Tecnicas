@@ -29,6 +29,10 @@ public class UserService {
         userRep.removeAll();
     }
 
+    public void removeSpecific(String id){
+        userRep.removeSpecific(id);
+    }
+
     public boolean register(User user) {
         return userRep.register(user);
     }

@@ -7,6 +7,6 @@ public interface IUserRepo {
     List<User> allUsers();
     List<User> specificUser(String filter);
     void removeAll();
-    void removeSpecific(Long id);
+    void removeSpecific(String id);
     boolean register(User user);
 }

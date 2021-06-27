@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @ComponentScan(basePackages = {"TF01"})
 @EntityScan(basePackages = {"TF01"})
-
 @EnableJpaRepositories(basePackages = {"TF01"})
 
 public class TfApplication {

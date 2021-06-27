@@ -9,6 +9,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface IComplaintCRUD extends CrudRepository<Complaint, String> {
     List<Complaint> findAll();
     List<Complaint> findByTitle(String title);
-    List<Complaint> findByComment(String comment);
+    List<Complaint> findByComments(String comments);
 
 }
