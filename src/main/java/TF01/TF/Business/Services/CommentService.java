@@ -3,33 +3,33 @@ package TF01.TF.Business.Services;
 import java.util.*;
 
 import TF01.TF.Business.Entities.Comment;
-import TF01.TF.Business.Repositories.CommentRepo;
+import TF01.TF.Business.Repositories.ICommentRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DistrictService {
-    private CommentRepo Comment;
+public class CommentService{
+    private ICommentRepo commentRep;
 
     @Autowired
-    public DistrictService(CommentRepo Comment) {
-        this.Comment = Comment;
+    public CommentService(ICommentRepo commentRepo) {
+        this.commentRep = commentRepo;
     }
 
-    public List<Comment> todos() {
-        return Comment.todos();
+    public List<Comment> allComments() {
+        return commentRep.allComments();
     }
 
-    public List<Comment> especifico(String text) {
-        return Comment.especifico(text);
+    public List<Comment> specificComment(String filter) {
+        return commentRep.specificComment(filter);
     }
 
-    public boolean removeTodos() {
-        return Comment.removeTodos();
+    public void removeTodos() {
+        commentRep.removeAll();
     }
 
-    public boolean cadastrar(Comment comment) {
-        return Comment.cadastrar(comment);
+    public boolean register(Comment comment) {
+        return commentRep.register(comment);
     }
 }

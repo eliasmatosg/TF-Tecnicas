@@ -43,4 +43,34 @@ public class UserRepo implements IUserRepo {
         return true;
 
     }
+
+    @Override
+    public List<User> allUsers() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<User> specificUser(String filter) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void removeAll() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void removeSpecific(Long id) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public boolean register(User user) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }

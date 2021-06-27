@@ -15,39 +15,35 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
 
-@Entity
+@Entity(name = "complaint")
 public class Complaint {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
     private String title;
     private String description;
     private String imageLink;
     private Boolean hasBeenSolved;
     private Date date;
-
-    @ManyToOne(cascade= CascadeType.ALL)
-    @JoinColumn(name="category_id", referencedColumnName = "id")
-    private Category category;
-
-    @ManyToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name = "street_id")
-	private Street street;
-
+    private String district;
+    private String category;
+    private String address;
     @OneToMany(cascade= CascadeType.ALL, mappedBy="complaint")
 	private List<Comment> comments;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     protected Complaint() {};
 
-    public Complaint(String title, String description, String imageLink, Date date, Boolean hasBeenSolved, Category category, Street street) {
+    public Complaint(String title, String description, String imageLink, Date date, String category, String address) {
         this.title = title;
         this.description = description;
         this.imageLink = imageLink;
         this.date = date;
-        this.hasBeenSolved = hasBeenSolved;
+        this.hasBeenSolved = false;
         this.category = category;
-        this.street = street;
+        this.address = address;
         this.comments = new ArrayList<Comment>();
     }
 
@@ -95,19 +91,27 @@ public class Complaint {
         hasBeenSolved = !hasBeenSolved;
     }
 
-    public Category getCategory() {
+    public String getAddress() {
+        return address;
+    }
+
+    public void setStreet(String address) {
+        this.address = address;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(String category) {
         this.category = category;
-    }
-
-    public Street getStreet() {
-        return street;
-    }
-
-    public void setStreet(Street street) {
-        this.street = street;
     }
 }

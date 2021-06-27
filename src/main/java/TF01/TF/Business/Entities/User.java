@@ -13,21 +13,22 @@ import javax.persistence.OneToMany;
 import java.util.List;
 import java.util.ArrayList;
 
-@Entity
+@Entity(name = "user")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
 	private String name;
 	private boolean isAdmin;
     private boolean isOfficialOrgan;
-
     @OneToMany(cascade= CascadeType.ALL, mappedBy="user")
+    @JoinColumn(name = "complaint_id")
 	private List<Complaint> complaints;
+    @OneToMany()
+    @JoinColumn(name = "comment_id", nullable = false)
+    private List<Comment> comments;
 
 	protected User() {}
-
     public User(String name, boolean isAdmin, boolean isOfficialOrgan) {
         this.name = name;
         this.isAdmin = isAdmin;

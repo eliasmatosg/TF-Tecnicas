@@ -11,19 +11,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-@Entity
+@Entity(name = "comment")
 public class Comment {
     @Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
     private String text;
     private String imageLink;
-
     @ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name = "user_id")
 	private User user;
-    
     protected Comment() {}
 
     public Comment(String text, String imageLink, User user) {

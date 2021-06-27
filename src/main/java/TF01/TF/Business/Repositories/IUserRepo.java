@@ -4,8 +4,9 @@ import java.util.*;
 import TF01.TF.Business.Entities.*;
 
 public interface IUserRepo {
-    List<User> todos();
-    List<User> especifico(String name);
-    void removeTodos();
-    boolean cadastra(User user);
+    List<User> allUsers();
+    List<User> specificUser(String filter);
+    void removeAll();
+    void removeSpecific(Long id);
+    boolean register(User user);
 }
