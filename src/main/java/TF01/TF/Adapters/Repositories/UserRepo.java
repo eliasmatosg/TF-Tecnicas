@@ -12,35 +12,38 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserRepo implements IUserRepo {
-    private IUserCRUD userCRUD;
+    private IUserCRUD userCrud;
 
     @Autowired
 
-    public UserRepo(IUserCRUD UserCrud ) {
-        this.userCRUD = userCRUD;
+    public UserRepo(IUserCRUD userCrud) {
+        this.userCrud = userCrud;
         
     }
 
-    public List<User> todos() {
-        List<User> resp = userCRUD.findAll();
-        return resp;
-
+    @Override
+    public List<User> allUsers() {
+        return userCrud.findAll();
     }
 
-    public List<User> especifico(String name) {
-        List<User> resp = userCRUD.findByName(name);
-        return resp;
-
+    @Override
+    public List<User> specificUser(String filter) {
+        return userCrud.findByName(filter);
     }
 
-    public void removeTodos(){
-        userCRUD.deleteAll();
-
+    @Override
+    public void removeAll() {
+        userCrud.deleteAll();
     }
 
-    public boolean cadastra(User user){
-        userCRUD.save(user);
+    @Override
+    public void removeSpecific(String id) {
+        userCrud.deleteById(id);
+    }
+
+    @Override
+    public boolean register(User user) {
+        userCrud.save(user);
         return true;
-
     }
 }

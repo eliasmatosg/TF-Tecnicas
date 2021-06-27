@@ -3,33 +3,37 @@ package TF01.TF.Business.Services;
 import java.util.*;
 
 import TF01.TF.Business.Entities.User;
-import TF01.TF.Business.Repositories.UserRepo;
+import TF01.TF.Business.Repositories.IUserRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserService {
-    private UserRepo userRepo;
+    private IUserRepo userRep;
 
     @Autowired
-    public UserService(UserRepo userRepo) {
-        this.userRepo = userRepo;
+    public UserService(IUserRepo userRep) {
+        this.userRep = userRep;
     }
 
-    public List<User> todos() {
-        return userRepo.todos();
+    public List<User> allUsers() {
+        return userRep.allUsers();
     }
 
-    public List<User> especifico(String name) {
-        return userRepo.especifico(name);
+    public List<User> specificUser(String filter) {
+        return userRep.specificUser(filter);
     }
 
-    public boolean removeTodos() {
-        return userRepo.removeTodos();
+    public void removeAll() {
+        userRep.removeAll();
     }
 
-    public boolean cadastrar(User user) {
-        return userRepo.cadastrar(user);
+    public void removeSpecific(String id){
+        userRep.removeSpecific(id);
+    }
+
+    public boolean register(User user) {
+        return userRep.register(user);
     }
 }

@@ -2,34 +2,39 @@ package TF01.TF.Business.Services;
 
 import java.util.*;
 
+import TF01.TF.Business.Entities.Comment;
 import TF01.TF.Business.Entities.Complaint;
-import TF01.TF.Business.Repositories.ComplaintRepo;
+import TF01.TF.Business.Repositories.IComplaintRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ComplaintService {
-    private ComplaintRepo complaintRepo;
+    private IComplaintRepo complaintRep;
 
     @Autowired
-    public ComplaintService(ComplaintRepo complaintRepo) {
-        this.complaintRepo = complaintRepo;
+    public ComplaintService(IComplaintRepo complaintRep) {
+        this.complaintRep = complaintRep;
     }
 
-    public List<Complaint> todos() {
-        return complaintRepo.todos();
+    public List<Complaint> allComplaints() {
+        return complaintRep.allComplaints();
     }
 
-    public List<Complaint> especifico(String title, String comment) {
-        return complaintRepo.especifico(title, comment);
+    public List<Complaint> specificComplaint(String filter) {
+        return complaintRep.SpecificComplaint(filter);
     }
 
-    public boolean removeTodos() {
-        return complaintRepo.removeTodos();
+    public void removeAll() {
+        complaintRep.removeAll();
     }
 
-    public boolean cadastrar(Complaint complaint) {
-        return complaintRepo.cadastrar(complaint);
+    public boolean register(long userId, Complaint complaint) {
+        return complaintRep.register(userId, complaint);
+    }
+
+    public List<Comment> getComments(){
+        return complaintRep.allComments();
     }
 }

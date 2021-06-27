@@ -4,8 +4,9 @@ import java.util.*;
 import TF01.TF.Business.Entities.*;
 
 public interface ICommentRepo {
-    List<Complaint> todos();
-    List<Complaint> especifico(String text);
-    boolean removeTodos();
-    boolean cadastra(Comment comment);
+    List<Comment> allComments();
+    List<Comment> specificComment(String filter);
+    void removeAll();
+    void removeSpecific(String id);
+    boolean register(Comment comment);
 }
