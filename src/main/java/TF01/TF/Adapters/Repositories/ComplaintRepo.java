@@ -6,10 +6,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import TF01.TF.Business.Entities.Comment;
 import TF01.TF.Business.Entities.Complaint;
+import TF01.TF.Business.Repositories.IComplaintRepo;
 
 @Component
-public class ComplaintRepo implements IComplaintCRUD{
+public class ComplaintRepo implements IComplaintRepo{
 	private IComplaintCRUD complaintCrud;
 	
 	@Autowired
@@ -18,73 +20,78 @@ public class ComplaintRepo implements IComplaintCRUD{
 	}
 
 	@Override
-	public <S extends Complaint> S save(S entity) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Complaint> allComplaints() {
+		return complaintCrud.findAll();
+	}
+
+	//!!FAZER PARA O ID TAMBÉM!!
+	@Override
+	public Optional<Complaint> SpecificComplaint(String filter) {
+		return complaintCrud.findById(filter);
 	}
 
 	@Override
-	public <S extends Complaint> Iterable<S> saveAll(Iterable<S> entities) {
-		// TODO Auto-generated method stub
-		return null;
+	public void removeAll() {
+		complaintCrud.deleteAll();
 	}
 
 	@Override
-	public Optional<Complaint> findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean existsById(String id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Iterable<Complaint> findAllById(Iterable<String> ids) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public long count() {
-		long count = complaintCrud.count();
-		return count;
-	}
-
-	@Override
-	public void deleteById(String id) {
+	public void removeSpecific(String id) {
 		complaintCrud.deleteById(id);
 	}
 
 	@Override
-	public void delete(Complaint entity) {
-		complaintCrud.delete(entity);
+	public boolean register(Complaint complaint) {
+		complaintCrud.save(complaint);
+		return true;
 	}
 
+	//!! IMPLEMENTAR MÉTODOS DE ATUALIZAR DE RECLAMAÇÃO 
+	// (UPDATE DOS ATRIBUTOS)!!
 	@Override
-	public void deleteAll(Iterable<? extends Complaint> entities) {
-		complaintCrud.deleteAll();
+	public boolean update(String id, Complaint complaint) {
+		complaintCrud.findById(id);
+		return true;
 	}
 
-	@Override
-	public void deleteAll() {
-		complaintCrud.deleteAll();
-	}
+	//@Override
+	//public long count() {
+		//long count = complaintCrud.count();
+		//return count;
+	//}
 
-	@Override
-	public List<Complaint> findAll() {
-		return complaintCrud.findAll();
-	}
+	//@Override
+	//public void deleteById(String id) {
+		//complaintCrud.deleteById(id);
+	//}
 
-	@Override
-	public List<Complaint> findByTitle(String title) {
-		return complaintCrud.findByTitle(title);
-	}
+	//@Override
+	//public void delete(Complaint entity) {
+		//complaintCrud.delete(entity);
+	//}
 
-	@Override
-	public List<Complaint> findByComments(String comments) {
-		return complaintCrud.findByComments(comments);
-	}
+	//@Override
+	//public void deleteAll(Iterable<? extends Complaint> entities) {
+		//complaintCrud.deleteAll();
+	//}
+
+	//@Override
+	//public void deleteAll() {
+		//complaintCrud.deleteAll();
+	//}
+
+	//@Override
+	//public List<Complaint> findAll() {
+		//return complaintCrud.findAll();
+	//}
+
+	//@Override
+	//public List<Complaint> findByTitle(String title) {
+		//return complaintCrud.findByTitle(title);
+	//}
+
+	//@Override
+	//public List<Complaint> findByComments(String comments) {
+		//return complaintCrud.findByComments(comments);
+	//}
 }

@@ -14,8 +14,8 @@ public class RegisterUserUC {
 		this.userService = userService;
 	}
 
-	public void run(User user){
-		userService.register(user);
+	public boolean run(User user){
+		return userService.register(user);
 	}
 	
 }

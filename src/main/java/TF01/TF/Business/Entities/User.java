@@ -32,6 +32,7 @@ public class User {
         this.isAdmin = isAdmin;
         this.isOfficialOrgan = isOfficialOrgan;
         this.complaints = new ArrayList<>();
+        this.comments = new ArrayList<>();
     }
 
     @Override

@@ -41,6 +41,10 @@ public class Comment {
         this.complaint = complaint;
     }
 
+    public User getUser(){
+        return this.user;
+    }
+
     public Long getId() {
         return id;
     }

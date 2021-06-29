@@ -14,7 +14,7 @@ public class RegisterCommentUC {
 		this.commentService = commentService;
 	}
 
-	public void run(Comment comment){
-		commentService.register(comment);
+	public boolean run(Comment comment){
+		return commentService.register(comment);
 	}
 }

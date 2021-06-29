@@ -1,6 +1,5 @@
 package TF01.TF.Business.Entities;
 
-import javax.annotation.Generated;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
@@ -49,6 +47,10 @@ public class Complaint {
 
     public Long getId() {
         return id;
+    }
+
+    public List<Comment> comments(){
+        return this.comments;
     }
 
     public String getTitle() {
@@ -113,5 +115,9 @@ public class Complaint {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public int totalComments(){
+        return this.comments.size();
     }
 }

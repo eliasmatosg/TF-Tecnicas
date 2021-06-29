@@ -22,7 +22,7 @@ public class ComplaintService {
         return complaintRep.allComplaints();
     }
 
-    public List<Complaint> specificComplaint(String filter) {
+    public Optional<Complaint> specificComplaint(String filter) {
         return complaintRep.SpecificComplaint(filter);
     }
 
@@ -30,11 +30,15 @@ public class ComplaintService {
         complaintRep.removeAll();
     }
 
-    public boolean register(long userId, Complaint complaint) {
-        return complaintRep.register(userId, complaint);
+    public void removeSpecific(String id){
+        complaintRep.removeSpecific(id);
     }
 
-    public List<Comment> getComments(){
-        return complaintRep.allComments();
+    public boolean register(Complaint complaint) {
+        return complaintRep.register(complaint);
+    }
+
+    public boolean update(String id, Complaint complaint){
+        return complaintRep.update(id, complaint);
     }
 }
