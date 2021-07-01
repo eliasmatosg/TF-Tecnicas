@@ -4,25 +4,24 @@ import org.springframework.stereotype.Component;
 
 import TF01.TF.Business.Services.ComplaintService;
 import TF01.TF.Business.Entities.Complaint;
+import TF01.TF.Business.Entities.Comment;
+
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
-public class ViewComplaint {
+public class ViewCommentsOnComplaint {
 	private ComplaintService complaintService; 
 
 	@Autowired
-	public ViewComplaint(ComplaintService complaintService){
+	public ViewCommentsOnComplaint(ComplaintService complaintService){
 		this.complaintService = complaintService;
 	}
 
-	public Complaint run(String filter){
-		return complaintService.specificComplaint(filter);
-	}
-	
-	public List<Complaint> run(){
-		return complaintService.allComplaints();
+	public List<Comment> run(String filter){
+		Complaint complaint = complaintService.specificComplaint(filter);
+		return complaint.comments();
 	}
 }

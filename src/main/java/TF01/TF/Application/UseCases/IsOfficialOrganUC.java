@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import TF01.TF.Business.Services.UserService;
 import TF01.TF.Business.Entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 
 @Component
 public class IsOfficialOrganUC {
@@ -15,7 +16,7 @@ public class IsOfficialOrganUC {
 	}
 
 	public boolean run(String id){
-		User user = userService.specificUser(id);
+		User user = userService.specificUser(id).get(0);
         return user.getIsOfficialOrgan();
 	}
 }

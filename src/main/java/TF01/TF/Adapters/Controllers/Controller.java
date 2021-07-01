@@ -1,6 +1,7 @@
 package TF01.TF.Adapters.Controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,12 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import TF01.TF.Business.Entities.*;
+//import TF01.TF.Business.Entities.Complaint;
 import TF01.TF.Business.Repositories.*;
-import TF01.TF.Adapters.Application.DTOs.*;
-import TF01.TF.Adapters.Application.UseCases.*;
+import TF01.TF.Application.DTOs.*;
+import TF01.TF.Application.UseCases.*;
 import TF01.TF.Application.DTOs.StatisticsDTO;
+import TF01.TF.Application.UseCases.IsOfficialOrganUC;
 import TF01.TF.Application.UseCases.RegisterCommentUC;
 import TF01.TF.Application.UseCases.RegisterComplaintUC;
+import TF01.TF.Application.UseCases.RegisterUserUC;
 import TF01.TF.Application.UseCases.StatisticsUC;
 import TF01.TF.Application.UseCases.ToggleOfficialUserUC;
 import TF01.TF.Application.UseCases.UpdateComplaint;
@@ -36,24 +40,28 @@ public class Controller {
     private UpdateComplaint updateComplaintUC;
     private ToggleOfficialUserUC toggleOfficialUserUC;
     private StatisticsUC statisticsUC;
+    private ViewCommentsOnComplaint viewCommentsOnComplaint;
+    private ViewUser viewUser;
 
     @Autowired
-    public Controller(RegisterUserUC registerUserUC, IsOfficialOrganUC isOfficialOrganUC, ViewComplaint viewComplaintUC, ViewComment viewCommentUC, RegisterComplaintUC registerComplaintUC, RegisterCommentUC registerCommentUC, UpdateComplaint updateComplaintUC, ToggleOfficialUserUC toggleOfficialUserUC, StatisticsUC statisticsUC) {
+    public Controller(ViewUser viewUser, RegisterUserUC registerUserUC, IsOfficialOrganUC isOfficialOrganUC, ViewComplaint viewComplaintUC, ViewComment viewCommentUC, RegisterComplaintUC registerComplaintUC, RegisterCommentUC registerCommentUC, UpdateComplaint updateComplaintUC, ToggleOfficialUserUC toggleOfficialUserUC, StatisticsUC statisticsUC, ViewCommentsOnComplaint viewCommentsOnComplaint) {
+        this.viewUser = viewUser;
         this.registerUserUC = registerUserUC;
         this.officialOrganUC = officialOrganUC;
         this.viewCommentUC = viewCommentUC;
-        this.viewComplaintUC = viewCommentUC;
-        this.registerComplaintUC = registerUserUC;
+        this.viewComplaintUC = viewComplaintUC;
+        this.registerComplaintUC = registerComplaintUC;
         this.registerCommentUC = registerCommentUC;
         this.updateComplaintUC = updateComplaintUC;
         this.toggleOfficialUserUC = toggleOfficialUserUC;
         this.statisticsUC = statisticsUC;
+        this.viewCommentsOnComplaint = viewCommentsOnComplaint;
     }
 
     @PostMapping("/registerUser")
     @CrossOrigin(origins = "*")
     public boolean cadastraUsuario(@RequestBody final User user) {
-        return registerUserUc.run(user);
+        return registerUserUC.run(user);
     }
 
     @PostMapping("/updateUser")
@@ -94,26 +102,31 @@ public class Controller {
 
     @GetMapping("/viewComplaints")
     @CrossOrigin(origins = "*")
-    public boolean viewComplaints() {
+    public List<Complaint> viewComplaints() {
         return viewComplaintUC.run();
     }
 
     @GetMapping("/viewComplaint")
     @CrossOrigin(origins = "*")
-    public boolean viewComplaint(@RequestParam final String complaintID) {
+    public Complaint viewComplaint(@RequestParam final String complaintID) {
         return viewComplaintUC.run(complaintID);
     }
 
     @GetMapping("/viewCommentsOnComplaint")
     @CrossOrigin(origins = "*")
-    public boolean viewComments(@RequestParam final String complaintID) {
-        return viewComplaintUC.run(complaintID);
+    public List<Comment> viewComments(@RequestParam final String complaintID) {
+        return viewCommentsOnComplaint.run(complaintID);
     }
 
     @GetMapping("/getStatistics")
     @CrossOrigin(origins = "*")
-    public boolean viewStatistics(@RequestBody final String category) {
+    public StatisticsDTO viewStatistics(@RequestBody final String category) {
         return statisticsUC.run(category);
+    }
+
+    @GetMapping("/users")
+    public List<User> viewAllUsers(){
+        return viewUser.run();
     }
     
 }

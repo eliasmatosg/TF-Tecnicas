@@ -25,8 +25,8 @@ public class ComplaintRepo implements IComplaintRepo{
 	}
 
 	@Override
-	public Optional<Complaint> SpecificComplaint(String filter) {
-		return complaintCrud.findById(filter);
+	public Complaint SpecificComplaint(String filter) {
+		return complaintCrud.findById(filter).get();
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class ComplaintRepo implements IComplaintRepo{
 
 	@Override
 	public boolean update(String id, Complaint complaint) {
-		Complaint compl = complaintCrud.findById(id);
+				Complaint compl = complaintCrud.findById(id).get();
         compl.setCategory(complaint.getCategory());
         compl.setDate(complaint.getDate());
         compl.setDescription(complaint.getDescription());

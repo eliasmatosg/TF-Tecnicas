@@ -22,7 +22,7 @@ public class ComplaintService {
         return complaintRep.allComplaints();
     }
 
-    public Optional<Complaint> specificComplaint(String filter) {
+    public Complaint specificComplaint(String filter) {
         return complaintRep.SpecificComplaint(filter);
     }
 

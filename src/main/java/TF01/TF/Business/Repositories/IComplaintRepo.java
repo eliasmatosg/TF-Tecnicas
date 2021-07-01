@@ -6,7 +6,7 @@ import TF01.TF.Business.Entities.*;
 
 public interface IComplaintRepo {
     List<Complaint> allComplaints();
-    Optional<Complaint> SpecificComplaint(String filter);
+    Complaint SpecificComplaint(String filter);
     void removeAll();
     void removeSpecific(String id);
     boolean register(Complaint complaint);

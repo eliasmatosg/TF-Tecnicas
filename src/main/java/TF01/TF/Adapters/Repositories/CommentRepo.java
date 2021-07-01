@@ -6,15 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import TF01.TF.Business.Entities.Comment;
+import TF01.TF.Business.Entities.Complaint;
 import TF01.TF.Business.Repositories.ICommentRepo;
 
 @Component
 public class CommentRepo implements ICommentRepo{
 	private ICommentCRUD commentCrud;
+	private IComplaintCRUD complaintCRUD;
 
 	@Autowired
-	public CommentRepo(ICommentCRUD commentCRUD){
+	public CommentRepo(ICommentCRUD commentCRUD, IComplaintCRUD complaintCRUD){
 		this.commentCrud = commentCRUD;
+		this.complaintCRUD = complaintCRUD;
 	}
 
 	@Override
@@ -38,9 +41,9 @@ public class CommentRepo implements ICommentRepo{
 	}
 
 	@Override
-	public boolean register(Comment comment) {
-		commentCrud.save(comment);
+	public boolean register(String id, Comment comment) {
+		Complaint target = complaintCRUD.findById(id).get();
+		target.comments().add(comment);
 		return true;
 	}
-	
 }
