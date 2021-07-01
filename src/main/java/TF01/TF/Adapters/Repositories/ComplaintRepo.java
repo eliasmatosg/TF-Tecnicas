@@ -24,7 +24,6 @@ public class ComplaintRepo implements IComplaintRepo{
 		return complaintCrud.findAll();
 	}
 
-	//!!FAZER PARA O ID TAMBÉM!!
 	@Override
 	public Optional<Complaint> SpecificComplaint(String filter) {
 		return complaintCrud.findById(filter);
