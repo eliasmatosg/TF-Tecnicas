@@ -34,7 +34,8 @@ public class Complaint {
 
     protected Complaint() {};
 
-    public Complaint(String title, String description, String imageLink, Date date, String category, String address) {
+    public Complaint(String title, String description, String imageLink, Date date, String category, String address, User user) {
+        this.user = user;
         this.title = title;
         this.description = description;
         this.imageLink = imageLink;
