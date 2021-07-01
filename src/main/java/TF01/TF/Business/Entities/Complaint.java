@@ -58,6 +58,10 @@ public class Complaint {
         return title;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
