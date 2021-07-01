@@ -3,6 +3,7 @@ package TF01.TF.Application.UseCases;
 import org.springframework.stereotype.Component;
 
 import TF01.TF.Business.Services.CommentService;
+import TF01.TF.Business.Services.ComplaintService;
 import TF01.TF.Business.Entities.Comment;
 
 import java.util.List;
@@ -11,18 +12,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
 public class ViewComplaint {
-	private CommentService commentService; 
+	private ComplaintService complaintService; 
 
 	@Autowired
-	public ViewComplaint(CommentService commentService){
-		this.commentService = commentService;
+	public ViewComplaint(ComplaintService complaintService){
+		this.complaintService = complaintService;
 	}
 
-	public List<Comment> run(String filter){
-		return commentService.specificComment(filter);
+	public List<Complaint> run(String filter){
+		return complaintService.specificComplaint(filter);
 	}
 	
-	public List<Comment> run(){
-		return commentService.allComments();
+	public List<Complaint> run(){
+		return complaintService.allComplaints();
 	}
 }

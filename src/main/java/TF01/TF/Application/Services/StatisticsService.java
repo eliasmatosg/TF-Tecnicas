@@ -22,7 +22,7 @@ public class StatisticsService{
 		//this.userRep = userRep;
 	}
 
-	public StatisticsDTO getStatistics(String filter){
+	public StatisticsDTO run(String filter){
 		long totalComplaints =  complaintRep
 			.allComplaints()
 			.stream()

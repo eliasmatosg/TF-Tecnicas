@@ -6,15 +6,17 @@ import TF01.TF.Business.Entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
-public class RegisterUserUC {
+public class ToggleOfficialUserUC {
 	private UserService userService;
 
 	@Autowired
-	public RegisterUserUC(UserService userService){
+	public ToggleOfficialUserUC(UserService userService){
 		this.userService = userService;
 	}
 
-	public boolean run(User user){
-		return userService.register(user);
+	public boolean run(String id){
+		User user = userService.specificUser(id);
+        user.toggleIsOfficialOrgan();
+        return true;
 	}
 }

@@ -29,7 +29,7 @@ public class CommentService{
         commentRep.removeAll();
     }
 
-    public boolean register(Comment comment) {
-        return commentRep.register(comment);
+    public boolean register(String id, Comment comment) {
+        return commentRep.register(id, comment);
     }
 }
