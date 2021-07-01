@@ -46,52 +46,16 @@ public class ComplaintRepo implements IComplaintRepo{
 		return true;
 	}
 
-	//!! IMPLEMENTAR MÉTODOS DE ATUALIZAR DE RECLAMAÇÃO 
-	// (UPDATE DOS ATRIBUTOS)!!
 	@Override
 	public boolean update(String id, Complaint complaint) {
-		complaintCrud.findById(id);
+		Complaint compl = complaintCrud.findById(id);
+        compl.setCategory(complaint.getCategory());
+        compl.setDate(complaint.getDate());
+        compl.setDescription(complaint.getDescription());
+        compl.setDistrict(complaint.getDistrict());
+        compl.setImageLink(complaint.getImageLink());
+        compl.setStreet(complaint.getAddress());
+        compl.setTitle(complaint.getTitle());
 		return true;
 	}
-
-	//@Override
-	//public long count() {
-		//long count = complaintCrud.count();
-		//return count;
-	//}
-
-	//@Override
-	//public void deleteById(String id) {
-		//complaintCrud.deleteById(id);
-	//}
-
-	//@Override
-	//public void delete(Complaint entity) {
-		//complaintCrud.delete(entity);
-	//}
-
-	//@Override
-	//public void deleteAll(Iterable<? extends Complaint> entities) {
-		//complaintCrud.deleteAll();
-	//}
-
-	//@Override
-	//public void deleteAll() {
-		//complaintCrud.deleteAll();
-	//}
-
-	//@Override
-	//public List<Complaint> findAll() {
-		//return complaintCrud.findAll();
-	//}
-
-	//@Override
-	//public List<Complaint> findByTitle(String title) {
-		//return complaintCrud.findByTitle(title);
-	//}
-
-	//@Override
-	//public List<Complaint> findByComments(String comments) {
-		//return complaintCrud.findByComments(comments);
-	//}
 }

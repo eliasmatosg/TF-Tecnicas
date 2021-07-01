@@ -10,5 +10,4 @@ public interface IComplaintCRUD extends CrudRepository<Complaint, String> {
     List<Complaint> findAll();
     List<Complaint> findByTitle(String title);
     List<Complaint> findByComments(String comments);
-
 }
