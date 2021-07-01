@@ -76,7 +76,13 @@ public class Controller {
 
     @PostMapping("/commentOnComplaint")
     @CrossOrigin(origins = "*")
-    public boolean comentaComplaint(@RequestParam final String complaintID, @RequestBody final Comment comment, @RequestBody final boolean hasBeenSolved) {
+    public boolean comentaComplaint(@RequestParam final String complaintID, @RequestBody final Comment comment) {
+        return registerCommentUC.run(complaintID, comment);
+    }
+
+    @PostMapping("/commentOnComplaintOfficial")
+    @CrossOrigin(origins = "*")
+    public boolean comentaComplaintOfficial(@RequestParam final String complaintID, @RequestBody final Comment comment, @RequestBody final boolean hasBeenSolved) {
         return registerCommentUC.run(complaintID, comment, hasBeenSolved);
     }
 

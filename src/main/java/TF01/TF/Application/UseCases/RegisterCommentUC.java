@@ -30,4 +30,11 @@ public class RegisterCommentUC {
         } 
         return true;
 	}
+
+    public boolean run(String id, Comment comment){
+        Complaint complaint = complaintService.specificComplaint(id);
+        List<Comment> comments = complaint.comments();
+        comments.add(comment);
+        return true;
+	}
 }
