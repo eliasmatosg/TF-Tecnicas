@@ -66,55 +66,55 @@ public class Controller {
 
     @PostMapping("/updateUser")
     @CrossOrigin(origins = "*")
-    public boolean atualizaUsuario(@RequestParam final String userID) {
+    public boolean atualizaUsuario(@RequestParam Long userID) {
         return toggleOfficialUserUC.run(userID);
     }
 
     @PostMapping("/registerComplaint")
     @CrossOrigin(origins = "*")
-    public boolean cadastraComplaint(@RequestParam Long userId, @RequestBody final Complaint complaint) {
+    public boolean cadastraComplaint(Long userId, @RequestBody Complaint complaint) {
         return registerComplaintUC.run(userId, complaint);
     }
 
     @PostMapping("/updateComplaint")
     @CrossOrigin(origins = "*")
-    public boolean atualizaComplaint(@RequestParam final String complaintID, @RequestBody final Complaint complaint) {
+    public boolean atualizaComplaint(Long complaintID, @RequestBody final Complaint complaint) {
         return updateComplaintUC.run(complaintID, complaint);
     }
 
     @PostMapping("/commentOnComplaint")
     @CrossOrigin(origins = "*")
-    public boolean comentaComplaint(@RequestParam final String complaintID, @RequestBody final Comment comment) {
+    public boolean comentaComplaint(@RequestParam final Long complaintID, @RequestBody final Comment comment) {
         return registerCommentUC.run(complaintID, comment);
     }
 
     @PostMapping("/commentOnComplaintOfficial")
     @CrossOrigin(origins = "*")
-    public boolean comentaComplaintOfficial(@RequestParam final String complaintID, @RequestBody final Comment comment, @RequestBody final boolean hasBeenSolved) {
+    public boolean comentaComplaintOfficial(@RequestParam final Long complaintID, @RequestBody final Comment comment, @RequestBody final boolean hasBeenSolved) {
         return registerCommentUC.run(complaintID, comment, hasBeenSolved);
     }
 
     @GetMapping("/isUserOfficialOrgan")
     @CrossOrigin(origins = "*")
-    public boolean isUserOfficialOrgan(@RequestParam final String userID) {
+    public boolean isUserOfficialOrgan(@RequestParam final Long userID) {
         return officialOrganUC.run(userID);
     }
 
     @GetMapping("/viewComplaints")
     @CrossOrigin(origins = "*")
-    public List<Complaint> viewComplaints() {
+    public List<ComplaintDTO> viewComplaints() {
         return viewComplaintUC.run();
     }
 
     @GetMapping("/viewComplaint")
     @CrossOrigin(origins = "*")
-    public Complaint viewComplaint(@RequestParam final String complaintID) {
-        return viewComplaintUC.run(complaintID);
+    public Complaint viewComplaint(@RequestParam final Long complaintID) {
+        return viewComplaintUC.run(complaintID).get();
     }
 
     @GetMapping("/viewCommentsOnComplaint")
     @CrossOrigin(origins = "*")
-    public List<Comment> viewComments(@RequestParam final String complaintID) {
+    public List<Comment> viewComments(@RequestParam final Long complaintID) {
         return viewCommentsOnComplaint.run(complaintID);
     }
 
@@ -125,12 +125,12 @@ public class Controller {
     }
 
     @GetMapping("/users")
-    public List<User> viewAllUsers(){
+    public List<UserDTO> viewAllUsers(){
         return viewUser.run();
     }
 
     @GetMapping("/user")
-    public User specificUser(@RequestParam Long userId){
+    public UserDTO specificUser(@RequestParam Long userId){
         return viewUser.run(userId);
     }
     

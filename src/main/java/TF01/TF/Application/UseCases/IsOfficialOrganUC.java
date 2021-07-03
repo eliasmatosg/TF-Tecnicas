@@ -5,6 +5,7 @@ import TF01.TF.Business.Services.UserService;
 import TF01.TF.Business.Entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Component
 public class IsOfficialOrganUC {
@@ -15,8 +16,14 @@ public class IsOfficialOrganUC {
 		this.userService = userService;
 	}
 
-	public boolean run(String id){
-		User user = userService.specificUser(id).get(0);
-        return user.getIsOfficialOrgan();
+	public boolean run(Long id){
+		try {
+			User user = userService.findById(id).get();
+        	return user.getIsOfficialOrgan();
+		} catch (NoSuchElementException err) {
+			System.out.println(err.getMessage());
+			return false;
+		}
+		
 	}
 }

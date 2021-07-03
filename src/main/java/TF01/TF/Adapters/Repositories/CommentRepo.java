@@ -1,6 +1,7 @@
 package TF01.TF.Adapters.Repositories;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -36,14 +37,18 @@ public class CommentRepo implements ICommentRepo{
 	}
 
 	@Override
-	public void removeSpecific(String id) {
+	public void removeSpecific(Long id) {
 		commentCrud.deleteById(id);
 	}
 
 	@Override
-	public boolean register(String id, Comment comment) {
-		Complaint target = complaintCRUD.findById(id).get();
-		target.comments().add(comment);
-		return true;
+	public boolean register(Long id, Comment comment) {
+		try {
+			Complaint target = complaintCRUD.findById(id).get();
+			target.comments().add(comment);
+			return true;
+		} catch (NoSuchElementException err) {
+			return false;
+		}
 	}
 }

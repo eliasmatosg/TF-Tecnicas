@@ -2,6 +2,7 @@ package TF01.TF.Business.Services;
 
 import java.util.*;
 
+import TF01.TF.Application.DTOs.UserDTO;
 import TF01.TF.Business.Entities.User;
 import TF01.TF.Business.Repositories.IUserRepo;
 
@@ -17,15 +18,15 @@ public class UserService {
         this.userRep = userRep;
     }
 
-    public List<User> allUsers() {
+    public List<UserDTO> allUsers() {
         return userRep.allUsers();
     }
 
-    public List<User> specificUser(String filter) {
-        return userRep.specificUser(filter);
+    public List<User> specificUser(String name) {
+        return userRep.specificUser(name);
     }
 
-    public User findById(Long id){
+    public Optional<User> findById(Long id){
         return userRep.findById(id);
     }
     
@@ -34,7 +35,7 @@ public class UserService {
         userRep.removeAll();
     }
 
-    public void removeSpecific(String id){
+    public void removeSpecific(Long id){
         userRep.removeSpecific(id);
     }
 

@@ -22,13 +22,13 @@ public class Complaint {
     private String description;
     private String imageLink;
     private Boolean hasBeenSolved;
-    private String date;
+    private Date date;
     private String district;
     private String category;
     private String address;
     @OneToMany(cascade= CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="complaint")
 	private List<Comment> comments;
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER ,optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
@@ -40,16 +40,38 @@ public class Complaint {
         this.title = title;
         this.description = description;
         this.imageLink = imageLink;
-        this.date = new Date().toString();
-        this.hasBeenSolved = false;
         this.category = category;
         this.address = address;
         this.comments = new ArrayList<Comment>();
     }
 
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setHasBeenSolved(Boolean hasBeenSolved) {
+        this.hasBeenSolved = hasBeenSolved;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     public void setUser(User user){
         this.user = user;
+    }
+
+    public Long getId(){
+        return this.id;
     }
 
     public List<Comment> comments(){
@@ -84,11 +106,11 @@ public class Complaint {
         this.imageLink = imageLink;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -98,6 +120,10 @@ public class Complaint {
 
     public void toggleHasBeenSolved() {
         hasBeenSolved = !hasBeenSolved;
+    }
+
+    public void setNotSolved(){
+        this.hasBeenSolved = false;
     }
 
     public String getAddress() {

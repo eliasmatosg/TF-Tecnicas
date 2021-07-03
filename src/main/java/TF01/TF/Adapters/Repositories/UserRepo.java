@@ -1,9 +1,12 @@
 package TF01.TF.Adapters.Repositories;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import TF01.TF.Business.Entities.User;
+import TF01.TF.Application.DTOs.UserDTO;
 import TF01.TF.Business.Entities.*;
 import TF01.TF.Business.Repositories.*;
 
@@ -22,12 +25,16 @@ public class UserRepo implements IUserRepo {
     }
 
     @Override
-    public List<User> allUsers() {
-        return userCrud.findAll();
+    public List<UserDTO> allUsers() {
+        List<UserDTO> users = new ArrayList<UserDTO>();
+        userCrud.findAll()
+        .stream()
+        .forEach(s -> users.add(new UserDTO(s.getName(), s.getIsAdmin(), s.getIsOfficialOrgan())));
+        return users;
     }
 
     @Override
-    public User findById(Long id) {
+    public Optional<User> findById(Long id) {
         return userCrud.findById(id);
     }
 
@@ -42,7 +49,7 @@ public class UserRepo implements IUserRepo {
     }
 
     @Override
-    public void removeSpecific(String id) {
+    public void removeSpecific(Long id) {
         userCrud.deleteById(id);
     }
 

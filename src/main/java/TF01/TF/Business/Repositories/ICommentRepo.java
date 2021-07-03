@@ -7,6 +7,6 @@ public interface ICommentRepo {
     List<Comment> allComments();
     List<Comment> specificComment(String filter);
     void removeAll();
-    void removeSpecific(String id);
-    boolean register(String id, Comment comment);
+    void removeSpecific(Long id);
+    boolean register(Long id, Comment comment);
 }

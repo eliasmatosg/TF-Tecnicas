@@ -14,7 +14,7 @@ public class UpdateComplaint {
 		this.complaintService = complaintService;
 	}
 
-	public boolean run(String id, Complaint complaint){
+	public boolean run(Long id, Complaint complaint){
 		return complaintService.update(id, complaint);
 	}
 }

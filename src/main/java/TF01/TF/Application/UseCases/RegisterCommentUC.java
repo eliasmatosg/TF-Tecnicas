@@ -8,6 +8,7 @@ import TF01.TF.Business.Entities.Complaint;
 
 import java.util.Optional;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,8 +23,8 @@ public class RegisterCommentUC {
 		this.commentService = commentService;
 	}
 
-	public boolean run(String id, Comment comment, boolean hasBeenSolved){
-        Complaint complaint = complaintService.specificComplaint(id);
+	public boolean run(Long id, Comment comment, boolean hasBeenSolved){
+        Complaint complaint = complaintService.specificComplaint(id).get();
         List<Comment> comments = complaint.comments();
         comments.add(comment);
         if (hasBeenSolved != complaint.getHasBeenSolved()) {
@@ -32,10 +33,14 @@ public class RegisterCommentUC {
         return true;
 	}
 
-    public boolean run(String id, Comment comment){
-        Complaint complaint = complaintService.specificComplaint(id);
-        List<Comment> comments = complaint.comments();
-        comments.add(comment);
-        return true;
+    public boolean run(Long id, Comment comment){
+        try {
+            Complaint complaint = complaintService.specificComplaint(id).get();
+            List<Comment> comments = complaint.comments();
+            comments.add(comment);
+            return true;
+        } catch (NoSuchElementException err) {
+            return false;
+        }
 	}
 }

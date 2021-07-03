@@ -1,13 +1,15 @@
 package TF01.TF.Business.Repositories;
 
 import java.util.*;
+
+import TF01.TF.Application.DTOs.UserDTO;
 import TF01.TF.Business.Entities.*;
 
 public interface IUserRepo {
-    List<User> allUsers();
+    List<UserDTO> allUsers();
     List<User> specificUser(String filter);
     void removeAll();
-    void removeSpecific(String id);
+    void removeSpecific(Long id);
     boolean register(User user);
-    User findById(Long id);
+    Optional<User> findById(Long id);
 }

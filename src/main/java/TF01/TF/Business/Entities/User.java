@@ -21,7 +21,7 @@ public class User {
 	private String name;
 	private boolean isAdmin;
     private boolean isOfficialOrgan;
-    @OneToMany(cascade= CascadeType.ALL, mappedBy= "user", fetch = FetchType.LAZY)
+    @OneToMany(cascade= CascadeType.ALL, mappedBy= "user", fetch = FetchType.EAGER)
 	private List<Complaint> complaints;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.LAZY)
     private List<Comment> comments;

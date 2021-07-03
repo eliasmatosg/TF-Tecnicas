@@ -9,6 +9,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface IUserCRUD extends CrudRepository<User, String> {
     List<User> findAll();
     List<User> findByName(String name);
-    User findById(Long id);
-
+    Optional<User> findById(Long id);
+    Boolean deleteById(Long id);
 }

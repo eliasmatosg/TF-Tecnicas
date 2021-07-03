@@ -9,5 +9,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface ICommentCRUD extends CrudRepository <Comment, String> {
     List<Comment> findAll();
     List<Comment> findByText(String text);
-
+    void deleteById(Long id);
 }

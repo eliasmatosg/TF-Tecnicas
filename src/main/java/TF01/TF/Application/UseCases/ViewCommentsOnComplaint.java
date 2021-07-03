@@ -20,8 +20,8 @@ public class ViewCommentsOnComplaint {
 		this.complaintService = complaintService;
 	}
 
-	public List<Comment> run(String filter){
-		Complaint complaint = complaintService.specificComplaint(filter);
+	public List<Comment> run(Long filter){
+		Complaint complaint = complaintService.specificComplaint(filter).get();
 		return complaint.comments();
 	}
 }

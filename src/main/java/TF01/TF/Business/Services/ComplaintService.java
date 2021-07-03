@@ -2,6 +2,7 @@ package TF01.TF.Business.Services;
 
 import java.util.*;
 
+import TF01.TF.Application.DTOs.ComplaintDTO;
 import TF01.TF.Business.Entities.Comment;
 import TF01.TF.Business.Entities.Complaint;
 import TF01.TF.Business.Repositories.IComplaintRepo;
@@ -18,11 +19,15 @@ public class ComplaintService {
         this.complaintRep = complaintRep;
     }
 
+    public List<ComplaintDTO> allComplaintsDTO() {
+        return complaintRep.allComplaintsDTO();
+    }
+
     public List<Complaint> allComplaints() {
         return complaintRep.allComplaints();
     }
 
-    public Complaint specificComplaint(String filter) {
+    public Optional<Complaint> specificComplaint(Long filter) {
         return complaintRep.SpecificComplaint(filter);
     }
 
@@ -30,7 +35,7 @@ public class ComplaintService {
         complaintRep.removeAll();
     }
 
-    public void removeSpecific(String id){
+    public void removeSpecific(Long id){
         complaintRep.removeSpecific(id);
     }
 
@@ -38,7 +43,7 @@ public class ComplaintService {
         return complaintRep.register(userId, complaint);
     }
 
-    public boolean update(String id, Complaint complaint){
+    public boolean update(Long id, Complaint complaint){
         return complaintRep.update(id, complaint);
     }
 }

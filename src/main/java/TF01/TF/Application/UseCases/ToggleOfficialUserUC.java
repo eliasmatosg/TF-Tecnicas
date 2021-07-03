@@ -15,8 +15,8 @@ public class ToggleOfficialUserUC {
 		this.userService = userService;
 	}
 
-	public boolean run(String id){
-		User user = userService.specificUser(id).get(0);
+	public boolean run(Long id){
+		User user = userService.findById(id).get();
         user.toggleIsOfficialOrgan();
         return true;
 	}
