@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import TF01.TF.Application.DTOs.CommentDTO;
 
@@ -29,6 +30,7 @@ public class Complaint {
     private String district;
     private String category;
     private String address;
+    private boolean solvedByOfficialOrgan;
     @OneToMany(cascade= CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="complaint")
 	private List<Comment> comments;
     @ManyToOne(fetch = FetchType.EAGER ,optional = false)
@@ -51,6 +53,14 @@ public class Complaint {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public boolean isSolvedByOfficialOrgan() {
+        return solvedByOfficialOrgan;
+    }
+
+    public void setSolvedByOfficialOrgan(boolean solvedByOfficialOrgan) {
+        this.solvedByOfficialOrgan = solvedByOfficialOrgan;
     }
 
     public void setHasBeenSolved(boolean hasBeenSolved) {

@@ -53,11 +53,10 @@ public class StatisticsService{
 		long solvedByGov = complaintRep
 		.allComplaints()
 		.stream()
-		.filter(s -> s.getHasBeenSolved() == true)
-		.map(s -> s.comments().stream().filter((x -> x.getUser().getIsOfficialOrgan() == true)))
+		.filter(s -> s.getHasBeenSolved() == true && s.isSolvedByOfficialOrgan() == true)
 		.count();	
 		double solvedByGovPercentage = ((int)solvedByGov*100)/(int)totalComplaints;
 
-		return new StatisticsDTO((int)totalComplaints, averageComments, percentSolved, percentSolved);
+		return new StatisticsDTO((int)totalComplaints, averageComments, percentSolved, solvedByGovPercentage);
 	}
 }

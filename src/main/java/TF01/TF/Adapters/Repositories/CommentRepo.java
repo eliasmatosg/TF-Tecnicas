@@ -84,6 +84,9 @@ public class CommentRepo implements ICommentRepo{
 				complaintCRUD.findById(complaintId).map(target -> { 
 					target.setHasBeenSolved(hasBeenSolved);
 					target.addComment(comment);
+					if (hasBeenSolved) {
+						target.setSolvedByOfficialOrgan(user.getIsOfficialOrgan());
+					}
 					return target;
 				});
 				return true;
