@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import TF01.TF.Application.DTOs.CommentDTO;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +24,7 @@ public class Complaint {
     private String title;
     private String description;
     private String imageLink;
-    private Boolean hasBeenSolved;
+    private boolean hasBeenSolved;
     private Date date;
     private String district;
     private String category;
@@ -50,7 +53,7 @@ public class Complaint {
         this.id = id;
     }
 
-    public void setHasBeenSolved(Boolean hasBeenSolved) {
+    public void setHasBeenSolved(boolean hasBeenSolved) {
         this.hasBeenSolved = hasBeenSolved;
     }
 
@@ -114,7 +117,7 @@ public class Complaint {
         this.date = date;
     }
 
-    public Boolean getHasBeenSolved() {
+    public boolean getHasBeenSolved() {
         return hasBeenSolved;
     }
 
@@ -144,6 +147,10 @@ public class Complaint {
 
     public String getCategory() {
         return category;
+    }
+
+    public void addComment(Comment comment){
+        this.comments.add(comment);
     }
 
     public void setCategory(String category) {

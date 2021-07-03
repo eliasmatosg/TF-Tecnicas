@@ -10,5 +10,5 @@ public interface IUserCRUD extends CrudRepository<User, String> {
     List<User> findAll();
     List<User> findByName(String name);
     Optional<User> findById(Long id);
-    Boolean deleteById(Long id);
+    boolean deleteById(Long id);
 }

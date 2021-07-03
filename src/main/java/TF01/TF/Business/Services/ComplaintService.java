@@ -3,7 +3,6 @@ package TF01.TF.Business.Services;
 import java.util.*;
 
 import TF01.TF.Application.DTOs.ComplaintDTO;
-import TF01.TF.Business.Entities.Comment;
 import TF01.TF.Business.Entities.Complaint;
 import TF01.TF.Business.Repositories.IComplaintRepo;
 
@@ -43,7 +42,7 @@ public class ComplaintService {
         return complaintRep.register(userId, complaint);
     }
 
-    public boolean update(Long id, Complaint complaint){
-        return complaintRep.update(id, complaint);
+    public void update(Long id, Long userId, Complaint complaint){
+        complaintRep.update(id, userId, complaint);
     }
 }

@@ -3,62 +3,38 @@ package TF01.TF.Application.DTOs;
 public class CommentDTO {
 	private String userName;
 	private String text;
-	private String title;
-	private String category;
-	private boolean hasBeenSolved;
-	private String date;
 	private String imageLink;
-	private String address;
-	private String district;
 
-	public CommentDTO(String userName, String text, String title,
-										String category, boolean hasBeenSolved, String date,
-										String imageLink, String address, String district){
+	public CommentDTO(String userName, String text, String imageLink){
 		this.userName = userName;
 		this.text = text;
-		this.title = title;
-		this.category = category;
-		this.hasBeenSolved = hasBeenSolved;
-		this.date = date;
 		this.imageLink = imageLink;
-		this.address = address;
-		this.district = district;
 	}
 
-	public String getUserName(){
+	public CommentDTO() {
+	}
+
+	public String getUserName() {
 		return this.userName;
 	}
 
-	public String getTitle() {
-		return title;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public String getCategory() {
-		return category;
+	public String getText() {
+		return this.text;
 	}
 
-	public boolean isHasBeenSolved() {
-		return hasBeenSolved;
-	}
-
-	public String getDate() {
-		return date;
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	public String getImageLink() {
-		return imageLink;
+		return this.imageLink;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public String getDistrict() {
-		return district;
-	}
-
-	public String getText(){
-		return this.text;
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
 	}
 }
-

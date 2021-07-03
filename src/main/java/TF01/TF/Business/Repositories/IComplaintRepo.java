@@ -13,5 +13,5 @@ public interface IComplaintRepo {
     void removeSpecific(Long id);
     boolean register(Long userId, Complaint complaint);
     //List<Comment> allComments();
-    boolean update(Long id, Complaint complaint);
+    void update(Long id, Long userId, Complaint complaint);
 }

@@ -29,7 +29,11 @@ public class CommentService{
         commentRep.removeAll();
     }
 
-    public boolean register(Long id, Comment comment) {
-        return commentRep.register(id, comment);
+    public boolean register(Long id, Long userId, Comment comment) {
+        return commentRep.register(id, userId, comment);
+    }
+
+    public boolean register(Long complaintId, Long userId, boolean hasBeenSolved, Comment comment) {
+        return commentRep.register(complaintId, userId, hasBeenSolved, comment);
     }
 }

@@ -32,11 +32,13 @@ public class StatisticsService{
 		int totalComments = commentRep
 		.allComments()
 		.size();
+
 		int filteredComments = complaintRep
 		.allComplaints()
 		.stream()
 		.filter(s -> s.getCategory().equalsIgnoreCase(filter))
-		.collect(Collectors.summingInt(s -> s.totalComments()));
+		.collect(Collectors.toList())
+		.size();
 		// .collect(Collectors.summingInt(Employee::getSalary)));
 		double averageComments = totalComments/filteredComments;
 
@@ -53,8 +55,9 @@ public class StatisticsService{
 		.stream()
 		.filter(s -> s.getHasBeenSolved() == true)
 		.map(s -> s.comments().stream().filter((x -> x.getUser().getIsOfficialOrgan() == true)))
-		.count();
-		//.filter(s -> s.comments().forEach(x -> x.getUser().getIsOfficialOrgan() == true) == true)
-		return new StatisticsDTO((int)totalComplaints, averageComments, percentSolved, solvedByGov);
+		.count();	
+		double solvedByGovPercentage = ((int)solvedByGov*100)/(int)totalComplaints;
+
+		return new StatisticsDTO((int)totalComplaints, averageComments, percentSolved, percentSolved);
 	}
 }

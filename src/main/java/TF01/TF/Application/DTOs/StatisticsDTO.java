@@ -4,13 +4,13 @@ public class StatisticsDTO {
 	private int totalComplaints;
 	private double averageComments;
 	private double percentSolvedOrClosed;
-	private double percentAnsweredAndClosedComplaints;
+	private double percentAnsweredAndClosedByGov;
 
-	public StatisticsDTO(int totalComplaints, double averageComments, double percentSolvedOrClosed,double percentAnsweredAndClosedComplaints){
+	public StatisticsDTO(int totalComplaints, double averageComments, double percentSolvedOrClosed,double percentAnsweredAndClosedByGov){
 		this.totalComplaints = totalComplaints;
 		this.averageComments = averageComments;
 		this.percentSolvedOrClosed = percentSolvedOrClosed;
-		this.percentAnsweredAndClosedComplaints = percentAnsweredAndClosedComplaints;
+		this.percentAnsweredAndClosedByGov = percentAnsweredAndClosedByGov;
 	}
 
 	public int getTotalComplaints() {
@@ -25,7 +25,7 @@ public class StatisticsDTO {
 		return percentSolvedOrClosed;
 	}
 
-	public double getPercentAnsweredAndClosedComplaints() {
-		return percentAnsweredAndClosedComplaints;
+	public double getPercentAnsweredAndClosedByGov() {
+		return percentAnsweredAndClosedByGov;
 	}
 }

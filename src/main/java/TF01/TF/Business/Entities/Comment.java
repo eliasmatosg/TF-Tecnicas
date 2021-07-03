@@ -26,18 +26,24 @@ public class Comment {
     @JoinColumn(name = "complaint_id", nullable = false)
     private Complaint complaint;
 
-    public Comment(String text, String imageLink, User user, Complaint complaint) {
+    public Comment(String text, String imageLink) {
         this.text = text;
         this.imageLink = imageLink;
-        this.user = user;
-        this.complaint = complaint;
     }
 
-    public Complaint getComment(){
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Complaint getComplaint() {
         return complaint;
     }
 
-    public void setComment(Complaint complaint){
+    public void setComplaint(Complaint complaint) {
         this.complaint = complaint;
     }
 

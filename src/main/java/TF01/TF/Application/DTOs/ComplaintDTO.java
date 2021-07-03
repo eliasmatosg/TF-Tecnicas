@@ -1,20 +1,23 @@
 package TF01.TF.Application.DTOs;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ComplaintDTO {
 	private String title;
 	private String description;
 	private String date;
-	private Boolean solved;
+	private boolean solved;
 	private String category;
 	private String street;
 	private String imageLink;
 	private String userName;
 	private String district;
 	private Long id;
+	private List<CommentDTO> comments;
 
-	public ComplaintDTO(String title, String description, String date, Boolean solved, String category, String street, String userName
-											, String imageLink, String district, Long id){
+	public ComplaintDTO(String title, String description, String date, boolean solved, String category, String street, String userName
+											, String imageLink, String district, Long id, List<CommentDTO> comments){
 		this.title = title;
 		this.description = description;
 		this.date = date;
@@ -24,7 +27,8 @@ public class ComplaintDTO {
 		this.userName = userName;
 		this.imageLink = imageLink;
 		this.district = district;
-		this.id = id;
+		this.id = id;	
+		this.comments = comments;
 	}
 
 	public String getImageLink() {
@@ -63,7 +67,7 @@ public class ComplaintDTO {
 		this.date = date;
 	}
 
-	public void setSolved(Boolean solved) {
+	public void setSolved(boolean solved) {
 		this.solved = solved;
 	}
 
@@ -87,7 +91,7 @@ public class ComplaintDTO {
 		return date;
 	}
 
-	public Boolean getSolved() {
+	public boolean getSolved() {
 		return solved;
 	}
 
@@ -107,4 +111,15 @@ public class ComplaintDTO {
 		this.id = id;
 	}
 
+	public void addComment(CommentDTO comment) {
+		comments.add(comment);
+	}
+
+	public List<CommentDTO> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentDTO> comments) {
+		this.comments = comments;
+	}
 }

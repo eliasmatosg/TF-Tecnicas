@@ -78,20 +78,20 @@ public class Controller {
 
     @PostMapping("/updateComplaint")
     @CrossOrigin(origins = "*")
-    public boolean atualizaComplaint(Long complaintID, @RequestBody final Complaint complaint) {
-        return updateComplaintUC.run(complaintID, complaint);
+    public void atualizaComplaint(Long complaintId, Long userId, @RequestBody final Complaint complaint) {
+        updateComplaintUC.run(complaintId, userId, complaint);
     }
 
     @PostMapping("/commentOnComplaint")
     @CrossOrigin(origins = "*")
-    public boolean comentaComplaint(@RequestParam final Long complaintID, @RequestBody final Comment comment) {
-        return registerCommentUC.run(complaintID, comment);
+    public boolean comentaComplaint(Long complaintId, Long userId, @RequestBody final Comment comment) {
+        return registerCommentUC.run(complaintId, userId, comment);
     }
 
     @PostMapping("/commentOnComplaintOfficial")
     @CrossOrigin(origins = "*")
-    public boolean comentaComplaintOfficial(@RequestParam final Long complaintID, @RequestBody final Comment comment, @RequestBody final boolean hasBeenSolved) {
-        return registerCommentUC.run(complaintID, comment, hasBeenSolved);
+    public boolean comentaComplaintOfficial(Long complaintId, Long userId, boolean hasBeenSolved, @RequestBody final Comment comment) {
+        return registerCommentUC.run(complaintId, userId, hasBeenSolved, comment);
     }
 
     @GetMapping("/isUserOfficialOrgan")
@@ -118,20 +118,33 @@ public class Controller {
         return viewCommentsOnComplaint.run(complaintID);
     }
 
-    @GetMapping("/getStatistics")
-    @CrossOrigin(origins = "*")
-    public StatisticsDTO viewStatistics(@RequestBody final String category) {
-        return statisticsUC.run(category);
-    }
+  //  @GetMapping("/getStatistics")
+  //  @CrossOrigin(origins = "*")
+  //  public StatisticsDTO viewStatistics(@RequestBody final String category) {
+  //      return statisticsUC.run(category);
+  //  }
 
     @GetMapping("/users")
+    @CrossOrigin(origins = "*")
     public List<UserDTO> viewAllUsers(){
         return viewUser.run();
     }
 
     @GetMapping("/user")
+    @CrossOrigin(origins = "*")
     public UserDTO specificUser(@RequestParam Long userId){
         return viewUser.run(userId);
     }
-    
+
+    @GetMapping("/viewAllComments")
+    @CrossOrigin(origins = "*")
+    public List<Comment> run(){
+        return viewCommentUC.run();
+    }
+
+    @GetMapping("/statistics")
+    @CrossOrigin(origins = "*")
+    public StatisticsDTO viewStatistics(@RequestParam String filter){
+        return statisticsUC.run(filter);
+    }
 }
