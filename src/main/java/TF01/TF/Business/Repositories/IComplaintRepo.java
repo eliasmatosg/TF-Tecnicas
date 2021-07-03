@@ -9,7 +9,7 @@ public interface IComplaintRepo {
     Complaint SpecificComplaint(String filter);
     void removeAll();
     void removeSpecific(String id);
-    boolean register(Complaint complaint);
+    boolean register(Long userId, Complaint complaint);
     //List<Comment> allComments();
     boolean update(String id, Complaint complaint);
 }

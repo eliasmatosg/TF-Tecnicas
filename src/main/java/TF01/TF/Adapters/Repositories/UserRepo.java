@@ -27,6 +27,11 @@ public class UserRepo implements IUserRepo {
     }
 
     @Override
+    public User findById(Long id) {
+        return userCrud.findById(id);
+    }
+
+    @Override
     public List<User> specificUser(String filter) {
         return userCrud.findByName(filter);
     }

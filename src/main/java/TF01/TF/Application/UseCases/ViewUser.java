@@ -22,7 +22,7 @@ public class ViewUser {
 		return userService.allUsers();
 	}
 	
-	public List<User> run(String filter){
-		return userService.specificUser(filter);
+	public User run(Long filter){
+		return userService.findById(filter);
 	}
 }

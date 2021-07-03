@@ -14,8 +14,9 @@ public class RegisterComplaintUC {
 		this.complaintService = complaintService;
 	}
 
-	public boolean run(Complaint complaint){
-		return complaintService.register(complaint);
+	public boolean run(Long userId, Complaint complaint){
+		complaintService.register(userId, complaint);
+		return true;
 	}
 		
 }

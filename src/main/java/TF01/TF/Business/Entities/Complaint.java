@@ -22,11 +22,11 @@ public class Complaint {
     private String description;
     private String imageLink;
     private Boolean hasBeenSolved;
-    private Date date;
+    private String date;
     private String district;
     private String category;
     private String address;
-    @OneToMany(cascade= CascadeType.ALL, fetch = FetchType.EAGER, mappedBy="complaint")
+    @OneToMany(cascade= CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="complaint")
 	private List<Comment> comments;
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", nullable = false)
@@ -34,20 +34,22 @@ public class Complaint {
 
     protected Complaint() {};
 
-    public Complaint(String title, String description, String imageLink, Date date, String category, String address, User user) {
-        this.user = user;
+    public Complaint(String title, String description, String imageLink, String category, String district, String address) {
+        //this.user = user;
+        this.district = district;
         this.title = title;
         this.description = description;
         this.imageLink = imageLink;
-        this.date = date;
+        this.date = new Date().toString();
         this.hasBeenSolved = false;
         this.category = category;
         this.address = address;
         this.comments = new ArrayList<Comment>();
     }
 
-    public Long getId() {
-        return id;
+
+    public void setUser(User user){
+        this.user = user;
     }
 
     public List<Comment> comments(){
@@ -82,11 +84,11 @@ public class Complaint {
         this.imageLink = imageLink;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

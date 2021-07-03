@@ -72,8 +72,8 @@ public class Controller {
 
     @PostMapping("/registerComplaint")
     @CrossOrigin(origins = "*")
-    public boolean cadastraComplaint(@RequestBody final Complaint complaint) {
-        return registerComplaintUC.run(complaint);
+    public boolean cadastraComplaint(@RequestParam Long userId, @RequestBody final Complaint complaint) {
+        return registerComplaintUC.run(userId, complaint);
     }
 
     @PostMapping("/updateComplaint")
@@ -127,6 +127,11 @@ public class Controller {
     @GetMapping("/users")
     public List<User> viewAllUsers(){
         return viewUser.run();
+    }
+
+    @GetMapping("/user")
+    public User specificUser(@RequestParam Long userId){
+        return viewUser.run(userId);
     }
     
 }

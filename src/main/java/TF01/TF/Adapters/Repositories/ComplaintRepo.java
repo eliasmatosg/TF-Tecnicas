@@ -7,16 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import TF01.TF.Business.Entities.Comment;
+import TF01.TF.Business.Entities.User;
 import TF01.TF.Business.Entities.Complaint;
 import TF01.TF.Business.Repositories.IComplaintRepo;
 
 @Component
 public class ComplaintRepo implements IComplaintRepo{
 	private IComplaintCRUD complaintCrud;
+	private IUserCRUD userCrud;
 	
 	@Autowired
-	public ComplaintRepo(IComplaintCRUD complaintCRUD){
+	public ComplaintRepo(IComplaintCRUD complaintCRUD, IUserCRUD userCRUD){
 		this.complaintCrud = complaintCRUD;
+		this.userCrud = userCrud;
 	}
 
 	@Override
@@ -40,7 +43,9 @@ public class ComplaintRepo implements IComplaintRepo{
 	}
 
 	@Override
-	public boolean register(Complaint complaint) {
+	public boolean register(Long userId, Complaint complaint) {
+		User user = userCrud.findById(userId);
+		complaint.setUser(user);
 		complaintCrud.save(complaint);
 		return true;
 	}

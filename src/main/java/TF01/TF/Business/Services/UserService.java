@@ -25,6 +25,11 @@ public class UserService {
         return userRep.specificUser(filter);
     }
 
+    public User findById(Long id){
+        return userRep.findById(id);
+    }
+    
+
     public void removeAll() {
         userRep.removeAll();
     }

@@ -34,8 +34,8 @@ public class ComplaintService {
         complaintRep.removeSpecific(id);
     }
 
-    public boolean register(Complaint complaint) {
-        return complaintRep.register(complaint);
+    public boolean register(Long userId, Complaint complaint) {
+        return complaintRep.register(userId, complaint);
     }
 
     public boolean update(String id, Complaint complaint){

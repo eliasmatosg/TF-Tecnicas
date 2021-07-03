@@ -9,4 +9,5 @@ public interface IUserRepo {
     void removeAll();
     void removeSpecific(String id);
     boolean register(User user);
+    User findById(Long id);
 }
